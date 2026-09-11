@@ -1,0 +1,104 @@
+{
+  "entraine_le": "2026-09-05T14:17:24.449045+00:00",
+  "modeles": {
+    "sms": {
+      "corpus_total": 5121,
+      "repartition": {
+        "LEGITIME": 4464,
+        "FRAUDE": 657
+      },
+      "taille_entrainement": 4096,
+      "taille_test": 1025,
+      "cv_f1_macro": 0.9719,
+      "cv_ecart": 0.0068,
+      "precision_fraude": 0.9917,
+      "rappel_fraude": 0.9015,
+      "f1_fraude": 0.9444,
+      "exactitude": 0.9863,
+      "matrice_confusion": {
+        "vrais_negatifs": 892,
+        "faux_positifs": 1,
+        "faux_negatifs": 13,
+        "vrais_positifs": 119
+      },
+      "artefact": "/home/user/scamguard/backend/ml/artifacts/pipeline_sms_v2.joblib"
+    },
+    "email": {
+      "corpus_total": 996,
+      "repartition": {
+        "LEGITIME": 500,
+        "FRAUDE": 496
+      },
+      "taille_entrainement": 796,
+      "taille_test": 200,
+      "cv_f1_macro": 0.9887,
+      "cv_ecart": 0.0115,
+      "precision_fraude": 0.9901,
+      "rappel_fraude": 1.0,
+      "f1_fraude": 0.995,
+      "exactitude": 0.995,
+      "matrice_confusion": {
+        "vrais_negatifs": 99,
+        "faux_positifs": 1,
+        "faux_negatifs": 0,
+        "vrais_positifs": 100
+      },
+      "artefact": "/home/user/scamguard/backend/ml/artifacts/pipeline_email_v1.joblib"
+    },
+    "url": {
+      "corpus_total": 141926,
+      "repartition": {
+        "FRAUDE": 70963,
+        "LEGITIME": 70963
+      },
+      "taille_entrainement": 113540,
+      "taille_test": 28386,
+      "cv_f1_macro": null,
+      "precision_fraude": 0.9252,
+      "rappel_fraude": 0.8703,
+      "f1_fraude": 0.8969,
+      "exactitude": 0.9,
+      "matrice_confusion": {
+        "vrais_negatifs": 13194,
+        "faux_positifs": 999,
+        "faux_negatifs": 1841,
+        "vrais_positifs": 12352
+      },
+      "caracteristiques_decisives": [
+        {
+          "nom": "ratio_chiffres_domaine",
+          "poids": 0.1514
+        },
+        {
+          "nom": "longueur_label_principal",
+          "poids": 0.1149
+        },
+        {
+          "nom": "nb_chiffres_domaine",
+          "poids": 0.1044
+        },
+        {
+          "nom": "longueur_domaine",
+          "poids": 0.0714
+        },
+        {
+          "nom": "voyelles_ratio",
+          "poids": 0.0712
+        },
+        {
+          "nom": "nb_points",
+          "poids": 0.0698
+        },
+        {
+          "nom": "entropie_domaine",
+          "poids": 0.0659
+        },
+        {
+          "nom": "chiffre_debut_label",
+          "poids": 0.0642
+        }
+      ],
+      "artefact": "/home/user/scamguard/backend/ml/artifacts/pipeline_url_v1.joblib"
+    }
+  }
+}

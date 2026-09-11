@@ -1,0 +1,11 @@
+{
+  "name": "ScamGuard",
+  "short_name": "ScamGuard",
+  "start_url": ".",
+  "display": "standalone",
+  "background_color": "#F6F8F9",
+  "theme_color": "#0B7285",
+  "description": "Detection des arnaques par SMS, liens et QR codes au Cameroun",
+  "orientation": "portrait-primary",
+  "prefer_related_applications": false
+}

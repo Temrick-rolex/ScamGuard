@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<title>ScamGuard — aperçu des écrans</title>
+<style>
+  :root{--p:#0B7285;--f:#2F9E44;--s:#E8A317;--d:#C92A2A;--bg:#F6F8F9;--bd:#E3E8EA}
+  *{box-sizing:border-box}
+  body{margin:0;background:#eceff1;font-family:-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;color:#1a1a1a;padding:28px}
+  h1{font-size:24px;margin:0 0 4px}
+  .sub{color:#666;font-size:14px;margin-bottom:8px}
+  .note{background:#fff9db;border:1px solid #ffe066;border-radius:8px;padding:12px 16px;font-size:13px;margin-bottom:26px;max-width:1200px}
+  h2{font-size:17px;margin:34px 0 14px;color:var(--p);border-bottom:2px solid var(--p);padding-bottom:6px;max-width:1200px}
+  .row{display:flex;gap:22px;flex-wrap:wrap;align-items:flex-start}
+  .phone{width:300px;background:#fff;border:9px solid #222;border-radius:32px;overflow:hidden;box-shadow:0 8px 24px rgba(0,0,0,.18)}
+  .cap{font-size:12px;color:#555;text-align:center;margin-top:8px;font-weight:600}
+  .bar{background:var(--p);color:#fff;padding:13px 15px;font-weight:600;font-size:15px;display:flex;align-items:center;gap:9px}
+  .body{padding:14px;background:var(--bg);min-height:470px}
+  .card{background:#fff;border:1px solid var(--bd);border-radius:12px;padding:14px;margin-bottom:12px}
+  .nav{display:flex;background:#fff;border-top:1px solid var(--bd)}
+  .nav div{flex:1;text-align:center;padding:9px 2px;font-size:9.5px;color:#888}
+  .nav div.on{color:var(--p);font-weight:700}
+  .nav .ic{font-size:17px;display:block;margin-bottom:2px}
+  .gauge{width:120px;height:120px;border-radius:50%;margin:0 auto 12px;display:flex;flex-direction:column;align-items:center;justify-content:center;color:#fff;font-weight:bold}
+  .gauge .n{font-size:32px;line-height:1}
+  .gauge .u{font-size:9px;opacity:.85}
+  .pill{display:inline-block;padding:6px 16px;border-radius:20px;color:#fff;font-size:11.5px;font-weight:700;letter-spacing:.5px}
+  .reco{border-radius:8px;padding:11px;font-size:12px;text-align:center;font-weight:600;margin-top:12px}
+  .ex{display:flex;gap:9px;margin-bottom:9px;font-size:11.5px;line-height:1.45}
+  .ex .i{flex-shrink:0;width:15px;opacity:.55}
+  .btn{background:var(--p);color:#fff;border:none;border-radius:10px;padding:13px;width:100%;font-size:14px;font-weight:600;margin-bottom:9px}
+  .btn.o{background:#fff;color:var(--p);border:1.5px solid var(--p)}
+  .inp{border:1px solid var(--bd);border-radius:10px;padding:11px;font-size:11.5px;color:#888;background:#fff;margin-bottom:11px}
+  .seg{display:flex;border:1px solid var(--p);border-radius:9px;overflow:hidden;margin-bottom:13px;font-size:11px}
+  .seg div{flex:1;text-align:center;padding:8px 3px;color:var(--p)}
+  .seg div.on{background:var(--p);color:#fff;font-weight:600}
+  .stat{flex:1;background:#fff;border:1px solid var(--bd);border-radius:11px;padding:12px 5px;text-align:center}
+  .stat .v{font-size:19px;font-weight:bold}
+  .stat .l{font-size:8.5px;color:#777;line-height:1.25}
+  .chip{display:inline-block;background:#f1f3f5;border-radius:12px;padding:3px 9px;font-size:10px;margin:2px 3px 2px 0}
+  .web{width:100%;max-width:1200px;background:#fff;border:1px solid #ccc;border-radius:10px;overflow:hidden;box-shadow:0 6px 20px rgba(0,0,0,.12)}
+  .wbar{background:#dfe4e6;padding:8px 13px;display:flex;gap:6px;align-items:center}
+  .dot{width:10px;height:10px;border-radius:50%}
+  .url{background:#fff;border-radius:5px;padding:4px 11px;font-size:11px;color:#555;margin-left:9px;flex:1}
+  .wrap{display:flex;min-height:430px}
+  .rail{width:180px;background:#fafbfb;border-right:1px solid var(--bd);padding:18px 0}
+  .rail .it{padding:11px 18px;font-size:12.5px;color:#666;display:flex;gap:10px;align-items:center}
+  .rail .it.on{background:#e3f2f4;color:var(--p);font-weight:700;border-right:3px solid var(--p)}
+  .main{flex:1;padding:22px;background:var(--bg)}
+  .metrics{display:flex;gap:13px;margin-bottom:22px;flex-wrap:wrap}
+  .metric{background:#fff;border:1px solid var(--bd);border-radius:11px;padding:15px;min-width:145px}
+  .metric .v{font-size:26px;font-weight:bold;margin:7px 0 1px}
+  .metric .l{font-size:11px;color:#777}
+  .barrow{margin-bottom:11px}
+  .barrow .top{display:flex;justify-content:space-between;font-size:12px;margin-bottom:4px}
+  .track{height:7px;background:#e9edef;border-radius:4px;overflow:hidden}
+  .fill{height:100%;background:var(--p)}
+  .mod{background:#f3f5f6;border-radius:8px;padding:11px;font-size:11.5px;line-height:1.5;margin:10px 0}
+  table{width:100%;border-collapse:collapse;font-size:12px}
+  td,th{padding:9px;border-bottom:1px solid var(--bd);text-align:left}
+  th{color:#666;font-size:10.5px;text-transform:uppercase;letter-spacing:.4px}
+  .tag{display:inline-block;padding:2px 8px;border-radius:11px;font-size:10px;font-weight:600}
+</style>
+</head>
+<body>
+
+<h1>ScamGuard — aperçu des écrans</h1>
+<div class="sub">Rendu statique du frontend Flutter · les valeurs affichées sont les <b>vraies sorties du backend</b></div>
+
+<div class="note">
+<b>Ceci est une maquette HTML, pas l'application.</b> Elle sert à visualiser le rendu sans installer Flutter.
+Les scores (99, 12), les explications et les statistiques proviennent d'appels réels à l'API testée.
+Les couleurs correspondent exactement à <code>frontend/lib/core/branding.dart</code>.
+</div>
+
+<h2>Application mobile Android — parcours client</h2>
+<div class="row">
+
+  <div>
+  <div class="phone">
+    <div class="bar">🛡️ ScamGuard</div>
+    <div class="body">
+      <div style="font-size:19px;font-weight:bold">Bonjour Paul</div>
+      <div style="font-size:11.5px;color:#777;margin-bottom:15px">Vérifiez un message avant de cliquer ou de répondre.</div>
+      <div style="background:var(--p);border-radius:12px;padding:18px;color:#fff;display:flex;align-items:center;gap:13px;margin-bottom:12px">
+        <div style="font-size:26px">🔍</div>
+        <div><div style="font-weight:bold;font-size:15px">Analyser un message</div>
+        <div style="font-size:10.5px;opacity:.85">SMS, lien, numéro ou QR code</div></div>
+      </div>
+      <div style="display:flex;gap:11px;margin-bottom:18px">
+        <div class="card" style="flex:1;text-align:center;margin:0"><div style="font-size:21px">🚩</div><div style="font-size:11.5px;font-weight:600;margin-top:5px">Signaler</div></div>
+        <div class="card" style="flex:1;text-align:center;margin:0"><div style="font-size:21px">🕘</div><div style="font-size:11.5px;font-weight:600;margin-top:5px">Historique</div></div>
+      </div>
+      <div style="font-size:13px;font-weight:bold;margin-bottom:9px">La communauté ScamGuard</div>
+      <div style="display:flex;gap:8px;margin-bottom:15px">
+        <div class="stat"><div style="font-size:14px">🚩</div><div class="v">3</div><div class="l">signalements</div></div>
+        <div class="stat"><div style="font-size:14px">📢</div><div class="v">1</div><div class="l">arnaques publiées</div></div>
+        <div class="stat"><div style="font-size:14px">📵</div><div class="v">1</div><div class="l">numéros suspects</div></div>
+      </div>
+      <div class="card" style="display:flex;gap:10px"><div style="color:var(--s)">💡</div>
+      <div style="font-size:11px;line-height:1.5">Aucun opérateur ni aucune banque ne vous demandera jamais votre code secret par SMS.</div></div>
+    </div>
+    <div class="nav"><div class="on"><span class="ic">🏠</span>Accueil</div><div><span class="ic">🕘</span>Historique</div><div><span class="ic">🔍</span>Analyser</div><div><span class="ic">👤</span>Compte</div></div>
+  </div>
+  <div class="cap">Accueil</div>
+  </div>
+
+  <div>
+  <div class="phone">
+    <div class="bar">🔍 Analyser <span style="margin-left:auto">⬛</span></div>
+    <div class="body">
+      <div class="seg"><div class="on">Message</div><div>Lien</div><div>Numéro</div></div>
+      <div class="inp" style="min-height:74px">URGENT MTN: votre compte MoMo sera bloqué. Confirmez votre code PIN 4589 sur http://mtn-verify.xyz avant 24h sinon suppression</div>
+      <button class="btn">🔍 Analyser</button>
+      <div class="card" style="text-align:center">
+        <div class="gauge" style="background:var(--d)"><div style="font-size:15px">⛔</div><div class="n">99</div><div class="u">sur 100</div></div>
+        <span class="pill" style="background:var(--d)">DANGER</span>
+        <div class="reco" style="background:rgba(201,42,42,.08);color:var(--d)">N'ouvrez aucun lien et ne répondez pas. Signalez ce contenu.</div>
+      </div>
+    </div>
+    <div class="nav"><div><span class="ic">🏠</span>Accueil</div><div><span class="ic">🕘</span>Historique</div><div class="on"><span class="ic">🔍</span>Analyser</div><div><span class="ic">👤</span>Compte</div></div>
+  </div>
+  <div class="cap">Analyse — score réel du moteur</div>
+  </div>
+
+  <div>
+  <div class="phone">
+    <div class="bar">🔍 Analyser</div>
+    <div class="body">
+      <div class="card">
+        <div style="font-weight:bold;font-size:13.5px;margin-bottom:11px">Pourquoi ce résultat</div>
+        <div class="ex"><div class="i">📋</div><div>Le message demande un code secret, un PIN ou un mot de passe</div></div>
+        <div class="ex"><div class="i">📋</div><div>Le message imite un opérateur ou une banque</div></div>
+        <div class="ex"><div class="i">📋</div><div>Le message crée un sentiment d'urgence</div></div>
+        <div class="ex"><div class="i">📋</div><div>Le message contient un lien raccourci ou un domaine douteux</div></div>
+        <div class="ex"><div class="i">📋</div><div>Le lien imite une marque connue sans lui appartenir</div></div>
+        <div class="ex"><div class="i">📋</div><div>Le message menace de sanctions ou de poursuites</div></div>
+        <div class="ex"><div class="i">🧠</div><div>Le modèle reconnaît une formulation typique des arnaques (97 sur 100)<div style="font-size:9.5px;color:#999">Modèle d'apprentissage</div></div></div>
+      </div>
+      <div class="card">
+        <div style="font-weight:bold;font-size:13.5px;margin-bottom:7px">Liens détectés</div>
+        <div style="font-family:monospace;font-size:11px">🔗 http://mtn-verify.xyz</div>
+        <div style="font-size:10px;color:#888;margin-top:7px">ScamGuard n'ouvre jamais ces liens pour vous.</div>
+      </div>
+      <button class="btn o">🚩 Signaler ce contenu</button>
+    </div>
+  </div>
+  <div class="cap">Explications — les 8 renvoyées par l'API</div>
+  </div>
+
+  <div>
+  <div class="phone">
+    <div class="bar">🚩 Signaler une fraude</div>
+    <div class="body">
+      <div class="card" style="display:flex;gap:9px"><div style="color:var(--p)">ℹ️</div>
+      <div style="font-size:10.5px;line-height:1.5">Un signalement apparaît dans l'historique public seulement après plusieurs signalements du même contenu et la validation d'un modérateur.</div></div>
+      <div style="text-align:center;margin:22px 0 14px"><div style="font-size:44px">⏳</div>
+      <div style="font-size:17px;font-weight:bold;margin-top:9px">Signalement enregistré</div>
+      <div style="font-size:11px;color:#777;margin-top:5px">Il sera visible après vérification.</div></div>
+      <div class="card">
+        <div style="display:flex;justify-content:space-between;font-size:12px;padding:4px 0"><span style="color:#777">Référence</span><b>#1</b></div>
+        <div style="display:flex;justify-content:space-between;font-size:12px;padding:4px 0"><span style="color:#777">Niveau de risque</span><b style="color:var(--d)">Danger (84/100)</b></div>
+        <div style="display:flex;justify-content:space-between;font-size:12px;padding:4px 0"><span style="color:#777">Signalements</span><b>1</b></div>
+      </div>
+      <div class="card">
+        <div style="font-weight:bold;font-size:12.5px;margin-bottom:9px">Pour apparaître dans l'historique</div>
+        <div class="ex"><div class="i">○</div><div>2 signalement(s) supplémentaire(s) requis</div></div>
+        <div class="ex"><div class="i">○</div><div>validation d'un modérateur requise</div></div>
+      </div>
+    </div>
+  </div>
+  <div class="cap">Reçu de signalement</div>
+  </div>
+
+  <div>
+  <div class="phone">
+    <div class="bar">🕘 Historique</div>
+    <div style="display:flex;background:var(--p);font-size:10px;color:#fff">
+      <div style="flex:1;text-align:center;padding:9px 2px;opacity:.65">Mes analyses</div>
+      <div style="flex:1;text-align:center;padding:9px 2px;opacity:.65">Mes signalements</div>
+      <div style="flex:1;text-align:center;padding:9px 2px;border-bottom:2px solid #fff;font-weight:700">Arnaques connues</div>
+    </div>
+    <div class="body">
+      <div class="card">
+        <div style="display:flex;align-items:center;gap:6px;font-size:11px;margin-bottom:9px">
+          <span>👥</span><b>3 signalements</b><span style="margin-left:auto;color:#999;font-size:10px">05/09/2026</span></div>
+        <div style="font-size:11.5px;line-height:1.5">ALERTE MTN: votre compte MoMo sera bloque. Confirmez votre code PIN au<b style="color:var(--d)">[TEL]</b> ou sur http://mtn-verify.xyz avant 24h</div>
+        <div style="margin-top:9px"><span class="chip">Demande de code ou PIN</span><span class="chip">📞 +237677889900</span></div>
+      </div>
+      <div style="text-align:center;color:#aaa;font-size:10.5px;margin-top:16px">Le numéro et les codes sont anonymisés<br>avant tout stockage</div>
+    </div>
+    <div class="nav"><div><span class="ic">🏠</span>Accueil</div><div class="on"><span class="ic">🕘</span>Historique</div><div><span class="ic">🔍</span>Analyser</div><div><span class="ic">👤</span>Compte</div></div>
+  </div>
+  <div class="cap">Historique des signalements</div>
+  </div>
+
+  <div>
+  <div class="phone">
+    <div class="bar">👤 Mon compte</div>
+    <div class="body">
+      <div class="card" style="display:flex;gap:13px;align-items:center">
+        <div style="width:48px;height:48px;border-radius:50%;background:var(--p);color:#fff;display:flex;align-items:center;justify-content:center;font-size:20px;font-weight:bold">P</div>
+        <div><div style="font-weight:bold;font-size:14px">Paul Mbarga</div>
+        <div style="font-size:11px;color:#777">paul@test.cm</div></div>
+      </div>
+      <div class="card">
+        <div style="font-weight:bold;font-size:12.5px;margin-bottom:11px">Protection automatique</div>
+        <div style="display:flex;justify-content:space-between;align-items:center;padding:7px 0">
+          <div style="font-size:11.5px;max-width:180px">Analyse des SMS en arrière-plan<div style="font-size:9.5px;color:#999">Numéros inconnus, dès réception</div></div>
+          <div style="width:36px;height:20px;background:var(--p);border-radius:11px;position:relative"><div style="width:16px;height:16px;background:#fff;border-radius:50%;position:absolute;right:2px;top:2px"></div></div>
+        </div>
+        <div style="display:flex;justify-content:space-between;align-items:center;padding:7px 0">
+          <div style="font-size:11.5px;max-width:180px">Alerte sur les appels inconnus<div style="font-size:9.5px;color:#999">Sans jamais couper l'appel</div></div>
+          <div style="width:36px;height:20px;background:var(--p);border-radius:11px;position:relative"><div style="width:16px;height:16px;background:#fff;border-radius:50%;position:absolute;right:2px;top:2px"></div></div>
+        </div>
+      </div>
+      <div class="card" style="padding:0">
+        <div style="padding:13px;font-size:12px;border-bottom:1px solid var(--bd)">🏅 Formule<div style="font-size:10.5px;color:#777">Gratuite, 20 analyses par jour</div></div>
+        <div style="padding:13px;font-size:12px;color:var(--d)">🚪 Se déconnecter</div>
+      </div>
+    </div>
+    <div class="nav"><div><span class="ic">🏠</span>Accueil</div><div><span class="ic">🕘</span>Historique</div><div><span class="ic">🔍</span>Analyser</div><div class="on"><span class="ic">👤</span>Compte</div></div>
+  </div>
+  <div class="cap">Paramètres</div>
+  </div>
+
+</div>
+
+<h2>Web Admin — tableau de bord</h2>
+<div class="web">
+  <div class="wbar"><div class="dot" style="background:#ff5f57"></div><div class="dot" style="background:#febc2e"></div><div class="dot" style="background:#28c840"></div>
+  <div class="url">https://admin.scamguard.cm</div></div>
+  <div class="wrap">
+    <div class="rail">
+      <div style="text-align:center;padding:14px 0 20px"><div style="font-size:26px">🛡️</div><div style="font-size:12px;font-weight:bold;color:var(--p)">Administration</div></div>
+      <div class="it on">📊 Tableau de bord</div>
+      <div class="it">⚖️ Modération</div>
+      <div class="it">👥 Utilisateurs</div>
+    </div>
+    <div class="main">
+      <div class="metrics">
+        <div class="metric"><div style="color:var(--p);font-size:19px">🚩</div><div class="v">3</div><div class="l">Signalements reçus</div></div>
+        <div class="metric"><div style="color:var(--f);font-size:19px">📢</div><div class="v">1</div><div class="l">Arnaques publiées</div></div>
+        <div class="metric"><div style="color:var(--d);font-size:19px">📵</div><div class="v">1</div><div class="l">Numéros suspects</div></div>
+        <div class="metric"><div style="color:var(--s);font-size:19px">⏳</div><div class="v">2</div><div class="l">En attente</div></div>
+      </div>
+      <div style="font-weight:bold;font-size:14px;margin-bottom:11px">Types de fraude les plus signalés</div>
+      <div class="card" style="max-width:620px">
+        <div class="barrow"><div class="top"><span>Demande de code ou PIN</span><b>1</b></div><div class="track"><div class="fill" style="width:100%"></div></div></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<h2>Web Admin — file de modération</h2>
+<div class="web">
+  <div class="wbar"><div class="dot" style="background:#ff5f57"></div><div class="dot" style="background:#febc2e"></div><div class="dot" style="background:#28c840"></div>
+  <div class="url">https://admin.scamguard.cm/moderation</div></div>
+  <div class="wrap">
+    <div class="rail">
+      <div style="text-align:center;padding:14px 0 20px"><div style="font-size:26px">🛡️</div><div style="font-size:12px;font-weight:bold;color:var(--p)">Administration</div></div>
+      <div class="it">📊 Tableau de bord</div>
+      <div class="it on">⚖️ Modération</div>
+      <div class="it">👥 Utilisateurs</div>
+    </div>
+    <div class="main">
+      <div class="card" style="max-width:740px">
+        <div style="display:flex;align-items:center;gap:11px;margin-bottom:4px">
+          <b style="font-size:13px">#2</b>
+          <span class="tag" style="background:rgba(201,42,42,.12);color:var(--d);border:1px solid rgba(201,42,42,.4)">Danger 84</span>
+          <span style="margin-left:auto;font-size:10.5px;color:#999">05/09/2026 à 20:51</span>
+        </div>
+        <div class="mod">ALERTE MTN: votre compte MoMo sera bloque. Confirmez votre code PIN au<b style="color:var(--d)">[TEL]</b> ou sur http://mtn-verify.xyz avant 24h</div>
+        <div><span class="chip">Demande de code ou PIN</span><span class="chip">📞 +237677889900</span><span class="chip">🔗 http://mtn-verify.xyz</span></div>
+        <div style="display:flex;gap:11px;margin-top:14px">
+          <button class="btn o" style="margin:0">✕ Rejeter</button>
+          <button class="btn" style="margin:0">✓ Valider</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<h2>Web Admin — utilisateurs</h2>
+<div class="web">
+  <div class="wbar"><div class="dot" style="background:#ff5f57"></div><div class="dot" style="background:#febc2e"></div><div class="dot" style="background:#28c840"></div>
+  <div class="url">https://admin.scamguard.cm/utilisateurs</div></div>
+  <div class="wrap">
+    <div class="rail">
+      <div style="text-align:center;padding:14px 0 20px"><div style="font-size:26px">🛡️</div><div style="font-size:12px;font-weight:bold;color:var(--p)">Administration</div></div>
+      <div class="it">📊 Tableau de bord</div>
+      <div class="it">⚖️ Modération</div>
+      <div class="it on">👥 Utilisateurs</div>
+    </div>
+    <div class="main">
+      <table>
+        <tr><th>Nom</th><th>E-mail</th><th>Rôle</th><th>Statut</th><th></th></tr>
+        <tr><td>Admin ScamGuard</td><td>admin@scamguard.cm</td><td><span class="tag" style="background:rgba(11,114,133,.12);color:var(--p)">ADMIN</span></td><td><span class="tag" style="background:rgba(47,158,68,.12);color:var(--f)">Actif</span></td><td style="color:#ccc">—</td></tr>
+        <tr><td>Paul Mbarga</td><td>paul@test.cm</td><td><span class="tag" style="background:rgba(11,114,133,.12);color:var(--p)">CLIENT</span></td><td><span class="tag" style="background:rgba(47,158,68,.12);color:var(--f)">Actif</span></td><td style="color:var(--d)">🚫</td></tr>
+        <tr><td>Ange Fotso</td><td>ange@test.cm</td><td><span class="tag" style="background:rgba(11,114,133,.12);color:var(--p)">CLIENT</span></td><td><span class="tag" style="background:rgba(47,158,68,.12);color:var(--f)">Actif</span></td><td style="color:var(--d)">🚫</td></tr>
+        <tr><td>Brice Nkolo</td><td>brice@test.cm</td><td><span class="tag" style="background:rgba(11,114,133,.12);color:var(--p)">CLIENT</span></td><td><span class="tag" style="background:rgba(201,42,42,.12);color:var(--d)">Suspendu</span></td><td style="color:var(--f)">✓</td></tr>
+      </table>
+    </div>
+  </div>
+</div>
+
+<h2>Web Client — le même code, adapté au grand écran</h2>
+<div class="web">
+  <div class="wbar"><div class="dot" style="background:#ff5f57"></div><div class="dot" style="background:#febc2e"></div><div class="dot" style="background:#28c840"></div>
+  <div class="url">https://scamguard.cm</div></div>
+  <div class="wrap">
+    <div class="rail" style="width:118px">
+      <div class="it on" style="flex-direction:column;gap:3px;font-size:10.5px">🏠<span>Accueil</span></div>
+      <div class="it" style="flex-direction:column;gap:3px;font-size:10.5px">🕘<span>Historique</span></div>
+      <div class="it" style="flex-direction:column;gap:3px;font-size:10.5px">🔍<span>Analyser</span></div>
+      <div class="it" style="flex-direction:column;gap:3px;font-size:10.5px">👤<span>Compte</span></div>
+    </div>
+    <div class="main">
+      <div style="max-width:620px;margin:0 auto">
+        <div class="seg"><div class="on">Message</div><div>Lien</div><div>Numéro</div></div>
+        <div class="inp" style="min-height:64px">Bonjour, votre facture ENEO de septembre est de 18400 FCFA payable en agence ou via MoMo</div>
+        <button class="btn">🔍 Analyser</button>
+        <div class="card" style="text-align:center">
+          <div class="gauge" style="background:var(--f)"><div style="font-size:15px">✅</div><div class="n">12</div><div class="u">sur 100</div></div>
+          <span class="pill" style="background:var(--f)">RIEN DE SUSPECT</span>
+          <div class="reco" style="background:rgba(47,158,68,.08);color:var(--f)">Aucun signe de fraude détecté. Restez vigilant malgré tout.</div>
+        </div>
+        <div class="card" style="text-align:left">
+          <div style="font-weight:bold;font-size:13.5px;margin-bottom:9px">Pourquoi ce résultat</div>
+          <div class="ex"><div class="i">✓</div><div>Aucun signal suspect identifié</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<h2>Où changer les couleurs</h2>
+<div class="web" style="padding:22px">
+<div style="font-size:13.5px;line-height:1.75">
+Tout se modifie dans <b>un seul fichier</b> : <code>frontend/lib/core/branding.dart</code>. Aucune couleur n'est écrite en dur ailleurs (vérifié : 0 occurrence).
+<div class="mod" style="margin-top:14px">static const couleurPrincipale = Color(0xFF0B7285);   <span style="color:#888">// bleu-vert · barres, boutons</span>
+static const couleurRisqueFaible = Color(0xFF2F9E44);  <span style="color:#888">// vert · score 0-39</span>
+static const couleurRisqueSuspect = Color(0xFFE8A317); <span style="color:#888">// orange · score 40-69</span>
+static const couleurRisqueDangereux = Color(0xFFC92A2A); <span style="color:#888">// rouge · score 70-100</span>
+static const nomApplication = 'ScamGuard';
+static const rayonCoins = 12.0;</div>
+La classe <b>Textes</b> du même fichier regroupe toutes les phrases affichées : changer un libellé ou traduire l'application se fait au même endroit.
+</div>
+</div>
+
+</body>
+</html>

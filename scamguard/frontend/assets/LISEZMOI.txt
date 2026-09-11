@@ -1,0 +1,9 @@
+Placez ici les ressources statiques de l'application (images, polices).
+
+Pour ajouter une image :
+  1. Deposez le fichier dans ce dossier, exemple assets/logo.png
+  2. Declarez-le dans pubspec.yaml sous la cle flutter: assets:
+  3. Utilisez-le : Image.asset('assets/logo.png')
+
+Les icones de lancement Android et web sont generees automatiquement
+par la commande flutter create, il n'y a rien a placer ici pour cela.

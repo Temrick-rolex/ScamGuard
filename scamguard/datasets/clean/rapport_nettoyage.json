@@ -1,0 +1,122 @@
+{
+  "sms": {
+    "brutes": 5548,
+    "retenues": 5121,
+    "rejets": {
+      "doublon": 388,
+      "trop_court": 39
+    },
+    "par_etiquette": {
+      "FRAUDE": 657,
+      "LEGITIME": 4464
+    },
+    "par_source": {
+      "uci_sms": 5091,
+      "formulaire_collecte": 30
+    },
+    "fichier": "/home/user/scamguard/datasets/clean/corpus_sms.csv"
+  },
+  "emails": {
+    "brutes": 1000,
+    "retenues": 996,
+    "rejets": {
+      "doublon": 4
+    },
+    "par_etiquette": {
+      "FRAUDE": 496,
+      "LEGITIME": 500
+    },
+    "fichier": "/home/user/scamguard/datasets/clean/corpus_email.csv"
+  },
+  "urls": {
+    "retenues": 159976,
+    "rejets": {
+      "doublon": 12
+    },
+    "par_etiquette": {
+      "FRAUDE": 79988,
+      "LEGITIME": 79988
+    },
+    "plafond_par_classe": 80000,
+    "fichier": "/home/user/scamguard/datasets/clean/corpus_url.csv"
+  },
+  "hashes": {
+    "retenues": 900,
+    "rejets": {},
+    "fichier": "/home/user/scamguard/datasets/clean/corpus_hash.csv"
+  },
+  "sources": {
+    "uci_sms": {
+      "origine": "UCI SMS Spam Collection via export blocs",
+      "url": "https://archive.ics.uci.edu/dataset/228/sms+spam+collection",
+      "licence": "Recherche, citation Almeida et Gomez Hidalgo 2011",
+      "fichiers": [
+        "/home/user/scamguard/datasets/raw/uci_sms_blocs/sms_fraude.txt",
+        "/home/user/scamguard/datasets/raw/uci_sms_blocs/sms_legitime.txt"
+      ]
+    },
+    "spamassassin": {
+      "origine": "Apache SpamAssassin public corpus",
+      "url": "https://spamassassin.apache.org/old/publiccorpus/",
+      "licence": "Apache, usage libre",
+      "fichiers": [
+        "/home/user/scamguard/datasets/raw/spamassassin/emails_fraude_partie_01_sur_04.txt",
+        "/home/user/scamguard/datasets/raw/spamassassin/emails_fraude_partie_02_sur_04.txt",
+        "/home/user/scamguard/datasets/raw/spamassassin/emails_fraude_partie_03_sur_04.txt",
+        "/home/user/scamguard/datasets/raw/spamassassin/emails_fraude_partie_04_sur_04.txt",
+        "/home/user/scamguard/datasets/raw/spamassassin/emails_legitime_partie_01_sur_04.txt",
+        "/home/user/scamguard/datasets/raw/spamassassin/emails_legitime_partie_02_sur_04.txt",
+        "/home/user/scamguard/datasets/raw/spamassassin/emails_legitime_partie_03_sur_04.txt",
+        "/home/user/scamguard/datasets/raw/spamassassin/emails_legitime_partie_04_sur_04.txt"
+      ]
+    },
+    "urls_phishing": {
+      "origine": "OpenPhish, URLhaus, Phishing.Database, Cisco Umbrella top-1M",
+      "url": "https://openphish.com/feed.txt",
+      "licence": "Flux publics gratuits",
+      "fichiers": [
+        "/home/user/scamguard/datasets/raw/urls/urls_fraude_partie_01_sur_21.txt",
+        "/home/user/scamguard/datasets/raw/urls/urls_fraude_partie_02_sur_21.txt",
+        "/home/user/scamguard/datasets/raw/urls/urls_fraude_partie_03_sur_21.txt",
+        "/home/user/scamguard/datasets/raw/urls/urls_fraude_partie_04_sur_21.txt",
+        "/home/user/scamguard/datasets/raw/urls/urls_fraude_partie_05_sur_21.txt",
+        "/home/user/scamguard/datasets/raw/urls/urls_fraude_partie_06_sur_21.txt",
+        "/home/user/scamguard/datasets/raw/urls/urls_fraude_partie_07_sur_21.txt",
+        "/home/user/scamguard/datasets/raw/urls/urls_fraude_partie_08_sur_21.txt",
+        "/home/user/scamguard/datasets/raw/urls/urls_fraude_partie_09_sur_21.txt",
+        "/home/user/scamguard/datasets/raw/urls/urls_fraude_partie_10_sur_21.txt",
+        "/home/user/scamguard/datasets/raw/urls/urls_fraude_partie_11_sur_21.txt",
+        "/home/user/scamguard/datasets/raw/urls/urls_fraude_partie_12_sur_21.txt",
+        "/home/user/scamguard/datasets/raw/urls/urls_fraude_partie_13_sur_21.txt",
+        "/home/user/scamguard/datasets/raw/urls/urls_fraude_partie_14_sur_21.txt",
+        "/home/user/scamguard/datasets/raw/urls/urls_fraude_partie_15_sur_21.txt",
+        "/home/user/scamguard/datasets/raw/urls/urls_fraude_partie_16_sur_21.txt",
+        "/home/user/scamguard/datasets/raw/urls/urls_fraude_partie_17_sur_21.txt",
+        "/home/user/scamguard/datasets/raw/urls/urls_fraude_partie_18_sur_21.txt",
+        "/home/user/scamguard/datasets/raw/urls/urls_fraude_partie_19_sur_21.txt",
+        "/home/user/scamguard/datasets/raw/urls/urls_fraude_partie_20_sur_21.txt",
+        "/home/user/scamguard/datasets/raw/urls/urls_fraude_partie_21_sur_21.txt",
+        "/home/user/scamguard/datasets/raw/urls/urls_legitime_partie_01_sur_21.txt",
+        "/home/user/scamguard/datasets/raw/urls/urls_legitime_partie_02_sur_21.txt",
+        "/home/user/scamguard/datasets/raw/urls/urls_legitime_partie_03_sur_21.txt",
+        "/home/user/scamguard/datasets/raw/urls/urls_legitime_partie_04_sur_21.txt"
+      ]
+    },
+    "malwarebazaar": {
+      "origine": "MalwareBazaar abuse.ch, hashes SHA-256",
+      "url": "https://bazaar.abuse.ch/",
+      "licence": "CC0",
+      "fichiers": [
+        "/home/user/scamguard/datasets/raw/malwarebazaar/hashes_malware_fraude_partie_01_sur_01.txt"
+      ]
+    },
+    "formulaire_collecte": {
+      "origine": "Collecte de terrain ScamGuard, formulaire Google Forms",
+      "url": "interne",
+      "licence": "Donnees du projet, anonymisees",
+      "fichiers": [
+        "/home/user/scamguard/datasets/raw/terrain/collecte_terrain.csv"
+      ]
+    }
+  }
+}

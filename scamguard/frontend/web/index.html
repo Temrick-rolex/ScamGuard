@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta content="IE=Edge" http-equiv="X-UA-Compatible">
+  <meta name="description" content="ScamGuard - detection des arnaques par SMS au Cameroun">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+
+  <base href="$FLUTTER_BASE_HREF">
+
+  <title>ScamGuard</title>
+  <link rel="manifest" href="manifest.json">
+
+  <style>
+    body { margin: 0; background: #F6F8F9; font-family: -apple-system, Segoe UI, Roboto, sans-serif; }
+    #loader {
+      position: fixed; inset: 0; display: flex; flex-direction: column;
+      align-items: center; justify-content: center; gap: 14px;
+    }
+    #loader .ring {
+      width: 42px; height: 42px; border: 4px solid #d7e2e5;
+      border-top-color: #0B7285; border-radius: 50%;
+      animation: spin 0.9s linear infinite;
+    }
+    @keyframes spin { to { transform: rotate(360deg); } }
+  </style>
+</head>
+<body>
+  <div id="loader">
+    <div class="ring"></div>
+    <div style="color:#0B7285;font-weight:600">ScamGuard</div>
+  </div>
+
+  <script>
+    window.addEventListener('flutter-first-frame', function () {
+      var loader = document.getElementById('loader');
+      if (loader) loader.remove();
+    });
+  </script>
+  <script src="flutter_bootstrap.js" async></script>
+</body>
+</html>
