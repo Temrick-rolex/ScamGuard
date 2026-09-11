@@ -18,7 +18,30 @@ scamguard/
 
 ## Démarrage rapide
 
-### 1. Base de données PostgreSQL 18
+### 0. Développement local (SQLite, rien a installer)
+
+Pour developper ou faire une demonstration, aucune base ni aucun `.env`
+n est necessaire : sans configuration, le backend utilise SQLite et cree
+toutes ses tables au demarrage.
+
+```
+cd backend
+python -m venv .venv
+# Windows PowerShell : .\.venv\Scripts\Activate.ps1
+source .venv/bin/activate
+pip install -r requirements.txt
+
+# PowerShell : $env:PYTHONPATH = "."
+PYTHONPATH=. python scripts/seed_admin.py
+python -m uvicorn app.main:app --reload
+```
+
+ATTENTION : ne copiez pas `.env.example` tel quel pour un test local, sa
+variable `DATABASE_URL` pointe vers PostgreSQL (voir etape 1) et le serveur
+refusera de demarrer si PostgreSQL n est pas installe. Sans fichier `.env`,
+le defaut SQLite s applique automatiquement.
+
+### 1. Base de données PostgreSQL 18 (mise en ligne)
 
 ```
 psql -U postgres -f database/01_creation_base.sql
@@ -27,7 +50,7 @@ psql -U postgres -f database/02_schema_tables.sql
 
 Changez le mot de passe dans `01_creation_base.sql` avant de l'exécuter.
 
-### 2. Backend
+### 2. Backend complet (modele + reputation)
 
 ```
 cd backend
