@@ -55,6 +55,14 @@ inconnu, il interroge `/api/v1/analyses/phone` et affiche une notification si le
 numero a deja ete signale. L'appel n'est jamais bloque automatiquement : la
 decision reste a l'utilisateur.
 
+La session (URL de l'API et jeton d'acces) est poussee au code natif a la
+connexion, a la restauration de session et a chaque renouvellement de jeton
+(methode `enregistrerSession`), puis effacee a la deconnexion. L'URL transmise
+est la base complete de l'API, prefixe `/api/v1` inclus : le code natif n'ajoute
+que le chemin de l'endpoint. Le HTTP en clair n'est autorise par la
+configuration reseau Android que vers `10.0.2.2` (backend local de l'emulateur) ;
+tout le reste d'Internet exige HTTPS.
+
 Sans reseau ou sans session valide, la consultation echoue en silence et
 l'appel se deroule normalement.
 

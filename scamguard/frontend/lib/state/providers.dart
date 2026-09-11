@@ -1,5 +1,6 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
+import '../core/config.dart';
 import '../models/user.dart';
 import '../services/admin_service.dart';
 import '../services/analysis_service.dart';
@@ -72,6 +73,7 @@ class SessionNotifier extends StateNotifier<SessionState> {
       }
 
       final user = await ref.read(authServiceProvider).profile();
+      await _synchroniserSentinelle();
       state = SessionState(user: user);
     } catch (_) {
       // Session corrompue ou serveur injoignable : on retombe sur l'ecran
@@ -79,6 +81,7 @@ class SessionNotifier extends StateNotifier<SessionState> {
       try {
         await store.clear();
       } catch (_) {}
+      await _effacerSentinelle();
       state = const SessionState();
     }
   }
@@ -87,6 +90,7 @@ class SessionNotifier extends StateNotifier<SessionState> {
     state = const SessionState(loading: true);
     try {
       final user = await ref.read(authServiceProvider).login(email, password);
+      await _synchroniserSentinelle();
       state = SessionState(user: user);
     } catch (error) {
       state = const SessionState();
@@ -96,7 +100,30 @@ class SessionNotifier extends StateNotifier<SessionState> {
 
   Future<void> logout() async {
     await ref.read(authServiceProvider).logout();
+    await _effacerSentinelle();
     state = const SessionState();
+  }
+
+  /// Pousse la session (URL de l API + jeton d acces) a la sentinelle
+  /// Android pour le filtrage d appels en arriere plan. Sans cela, le code
+  /// natif n a aucun jeton et degarde silencieusement en « numero inconnu ».
+  /// Sans effet sur web et iOS (SentinelleService ignore ces plateformes).
+  Future<void> _synchroniserSentinelle() async {
+    final jeton = ref.read(tokenStoreProvider).accessToken;
+    if (jeton == null) return;
+    try {
+      await ref
+          .read(sentinelleServiceProvider)
+          .enregistrerSession(AppConfig.apiBaseUrl, jeton);
+    } catch (_) {
+      // Non bloquant : la sentinelle retombe sur l analyse locale.
+    }
+  }
+
+  Future<void> _effacerSentinelle() async {
+    try {
+      await ref.read(sentinelleServiceProvider).effacerSession();
+    } catch (_) {}
   }
 }
 

@@ -5,6 +5,7 @@ import 'package:http/http.dart' as http;
 import '../core/branding.dart';
 import '../core/config.dart';
 import 'token_store.dart';
+import 'sentinelle_service.dart';
 
 class ApiException implements Exception {
   final int statusCode;
@@ -100,6 +101,16 @@ class ApiClient {
       }
       final body = jsonDecode(response.body) as Map<String, dynamic>;
       await store.save(body['access_token'] as String, body['refresh_token'] as String);
+
+      // Le jeton d acces change a chaque renouvellement : on le repousse a
+      // la sentinelle Android (filtrage d appels en arriere plan), sinon
+      // elle continuerait d utiliser un jeton expire. Sans effet sur web.
+      try {
+        await SentinelleService().enregistrerSession(
+          AppConfig.apiBaseUrl,
+          body['access_token'] as String,
+        );
+      } catch (_) {}
       return true;
     } catch (_) {
       return false;

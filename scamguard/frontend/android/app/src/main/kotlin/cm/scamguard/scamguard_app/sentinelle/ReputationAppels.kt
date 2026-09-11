@@ -32,7 +32,10 @@ object ReputationAppels {
         val jeton = prefs.getString(CLE_JETON, null) ?: return null
 
         return try {
-            val connexion = (URL("$base/api/v1/analyses/phone").openConnection() as HttpURLConnection).apply {
+            // Convention : "base" contient deja le prefixe /api/v1, on ne
+            // colle donc que le chemin de l endpoint. Evite le double
+            // /api/v1/api/v1/... de l ancienne convention.
+            val connexion = (URL("$base/analyses/phone").openConnection() as HttpURLConnection).apply {
                 requestMethod = "POST"
                 connectTimeout = DELAI
                 readTimeout = DELAI
