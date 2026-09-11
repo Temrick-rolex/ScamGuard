@@ -1,0 +1,25 @@
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+.pytest_cache/
+
+# Bases locales (SQLite de developpement)
+*.db
+*.sqlite3
+
+# Environnement
+.env
+
+# Flutter / Dart
+.dart_tool/
+.flutter-plugins*
+build/
+.scamguard_workspace/
+
+# Editeurs et OS
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
