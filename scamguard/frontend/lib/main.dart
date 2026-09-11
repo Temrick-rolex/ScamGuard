@@ -41,7 +41,12 @@ class _RootPageState extends ConsumerState<RootPage> {
   void initState() {
     super.initState();
     WidgetsBinding.instance.addPostFrameCallback((_) async {
-      await ref.read(sessionProvider.notifier).restore();
+      try {
+        await ref.read(sessionProvider.notifier).restore();
+      } catch (_) {
+        // Ne jamais rester bloque sur l ecran de chargement, meme si la
+        // restauration de session echoue d une facon inattendue.
+      }
       if (mounted) setState(() => _restored = true);
     });
   }

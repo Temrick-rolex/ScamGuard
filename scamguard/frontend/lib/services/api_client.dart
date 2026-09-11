@@ -87,11 +87,13 @@ class ApiClient {
 
   Future<bool> _renew() async {
     try {
-      final response = await _http.post(
-        _url('/auth/refresh'),
-        headers: const {'Content-Type': 'application/json'},
-        body: jsonEncode({'refresh_token': store.refreshToken}),
-      );
+      final response = await _http
+          .post(
+            _url('/auth/refresh'),
+            headers: const {'Content-Type': 'application/json'},
+            body: jsonEncode({'refresh_token': store.refreshToken}),
+          )
+          .timeout(AppConfig.requestTimeout);
       if (response.statusCode != 200) {
         await store.clear();
         return false;

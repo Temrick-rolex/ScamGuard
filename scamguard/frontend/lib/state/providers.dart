@@ -62,18 +62,23 @@ class SessionNotifier extends StateNotifier<SessionState> {
   Future<void> restore() async {
     state = const SessionState(loading: true);
     final store = ref.read(tokenStoreProvider);
-    await store.load();
-
-    if (!store.isLoggedIn) {
-      state = const SessionState();
-      return;
-    }
 
     try {
+      await store.load();
+
+      if (!store.isLoggedIn) {
+        state = const SessionState();
+        return;
+      }
+
       final user = await ref.read(authServiceProvider).profile();
       state = SessionState(user: user);
     } catch (_) {
-      await store.clear();
+      // Session corrompue ou serveur injoignable : on retombe sur l'ecran
+      // de connexion plutot que de rester bloque sur le chargement.
+      try {
+        await store.clear();
+      } catch (_) {}
       state = const SessionState();
     }
   }
