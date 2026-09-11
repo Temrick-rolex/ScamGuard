@@ -49,9 +49,9 @@ class _SentinelState extends State<Sentinel> with TickerProviderStateMixin {
   }
 
   Color get _couleur => switch (widget.humeur) {
-        HumeurSentinel.alerte => const Color(Branding.risqueDangereux),
-        HumeurSentinel.analyse => const Color(Branding.risqueSuspect),
-        _ => const Color(Branding.couleurPrincipale),
+        HumeurSentinel.alerte => Branding.couleurRisqueDangereux,
+        HumeurSentinel.analyse => Branding.couleurRisqueSuspect,
+        _ => Branding.couleurPrincipale,
       };
 
   String get _phrase {
@@ -186,8 +186,8 @@ class _PeintreSentinel extends CustomPainter {
     canvas.drawCircle(Offset(44, 21), 4.2, clair);
 
     if (humeur == HumeurSentinel.alerte) {
-      canvas.drawCircle(Offset(28, 21), 2.0, Paint()..color = const Color(Branding.risqueDangereux));
-      canvas.drawCircle(Offset(44, 21), 2.0, Paint()..color = const Color(Branding.risqueDangereux));
+      canvas.drawCircle(Offset(28, 21), 2.0, Paint()..color = Branding.couleurRisqueDangereux);
+      canvas.drawCircle(Offset(44, 21), 2.0, Paint()..color = Branding.couleurRisqueDangereux);
     } else {
       canvas.drawCircle(Offset(29, 22), 1.9, Paint()..color = const Color(0xFF10243A));
       canvas.drawCircle(Offset(45, 22), 1.9, Paint()..color = const Color(0xFF10243A));

@@ -129,8 +129,8 @@ class _PermissionsScreenState extends ConsumerState<PermissionsScreen> {
                 Icon(
                   accordee ? Icons.check_circle : Icons.radio_button_unchecked,
                   color: accordee
-                      ? const Color(Branding.risqueFaible)
-                      : const Color(Branding.risqueSuspect),
+                      ? Branding.couleurRisqueFaible
+                      : Branding.couleurRisqueSuspect,
                 ),
                 const SizedBox(width: 10),
                 Expanded(
@@ -161,7 +161,7 @@ class _PermissionsScreenState extends ConsumerState<PermissionsScreen> {
             else
               const Text(
                 'Autorisation accordee',
-                style: TextStyle(color: Color(Branding.risqueFaible), fontSize: 13),
+                style: TextStyle(color: Branding.couleurRisqueFaible, fontSize: 13),
               ),
           ],
         ),

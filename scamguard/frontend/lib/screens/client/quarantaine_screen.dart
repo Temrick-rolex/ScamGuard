@@ -132,7 +132,11 @@ class _Vide extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Icon(Icons.verified_user_outlined, size: 64, color: Color(Branding.risqueFaible)),
+            Icon(
+              Icons.verified_user_outlined,
+              size: 64,
+              color: Branding.couleurRisqueFaible,
+            ),
             SizedBox(height: 16),
             Text(
               'Aucun message en quarantaine',
@@ -165,8 +169,8 @@ class _Carte extends StatelessWidget {
   Widget build(BuildContext context) {
     final dangereux = element.niveau == 'DANGEREUX';
     final couleur = dangereux
-        ? const Color(Branding.risqueDangereux)
-        : const Color(Branding.risqueSuspect);
+        ? Branding.couleurRisqueDangereux
+        : Branding.couleurRisqueSuspect;
 
     return Container(
       decoration: BoxDecoration(

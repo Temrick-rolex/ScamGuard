@@ -78,7 +78,7 @@ ThemeData buildTheme() {
         borderRadius: BorderRadius.circular(Branding.rayonBoutons),
       ),
     ),
-    cardTheme: CardTheme(
+    cardTheme: CardThemeData(
       elevation: 0,
       color: Branding.couleurCarte,
       shape: RoundedRectangleBorder(
